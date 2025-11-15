@@ -1,82 +1,934 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Math Project</title>
+  <meta charset="UTF-8">
+  <title>Functions in the Real World – Sunway Lagoon Edition</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- W3.CSS -->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+
+  <!-- MathJax -->
+  <script>
+    window.MathJax = {
+      tex: {inlineMath: [['\\(','\\)'], ['$', '$']]}
+    };
+  </script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
   <style>
     body {
-      background: #f0f8ff; /* light blue background */
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #333;
-      margin: 20px;
+      font-family: "Poppins", sans-serif;
+      background-color: #f7f7f7;
     }
-    h1 {
-      color: #0077b6; /* bright blue */
-      text-align: center;
-      text-shadow: 1px 1px 2px #023e8a;
-    }
-    p {
-      font-size: 1.2em;
-      color: #03045e;
-      text-align: center;
-      margin-bottom: 40px;
-      font-weight: bold;
-    }
-    ul {
-      max-width: 400px;
-      margin: 0 auto 40px auto;
-      padding: 0;
-      list-style-type: none;
-      background: #caf0f8;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    ul li {
-      padding: 15px 20px;
-      border-bottom: 1px solid #90e0ef;
+    h1, h2, h3, h4 {
       font-weight: 600;
-      font-size: 1.1em;
-      color: #0077b6;
-      transition: background-color 0.3s ease;
     }
-    ul li:last-child {
-      border-bottom: none;
-    }
-    ul li:hover {
-      background-color: #90e0ef;
-      cursor: pointer;
-    }
-    a {
-      display: block;
-      text-align: center;
-      width: 120px;
-      margin: 0 auto;
-      padding: 12px 0;
-      background-color: #0077b6;
+    .hero {
+      position: relative;
       color: white;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 8px;
-      box-shadow: 0 3px 6px rgba(0, 119, 182, 0.5);
-      transition: background-color 0.3s ease;
+      min-height: 60vh;
+      background: #000 url("img/sunway-hero.jpg") center/cover no-repeat;
     }
-    a:hover {
-      background-color: #023e8a;
+    .hero-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.55);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 120px 16px 80px;
+    }
+    .hero-logo {
+      max-width: 260px;
+      margin-bottom: 24px;
+    }
+    .section-light {
+      background-color: #fafafa;
+    }
+    .section-dark {
+      background-color: #111;
+      color: white;
+    }
+    .section-padding {
+      padding: 64px 16px;
+    }
+    .ride-photo {
+      width: 100%;
+      max-width: 900px;
+      border-radius: 8px;
+      display: block;
+      margin: 24px auto 32px;
+    }
+    .logo-small {
+      max-height: 64px;
+      margin-bottom: 16px;
+    }
+    .content-card {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .w3-card-white {
+      background-color: white;
+      border-radius: 8px;
+    }
+    .desmos-frame {
+      width: 100%;
+      max-width: 500px;
+      height: 500px;
+      border: 1px solid #ccc;
+    }
+    .pill-nav a {
+      padding: 8px 16px;
+      border-radius: 999px;
+      margin: 4px;
+    }
+    @media (min-width: 992px) {
+      .two-column {
+        display: flex;
+        gap: 24px;
+      }
+      .two-column > div {
+        flex: 1;
+      }
     }
   </style>
-</head> 
+</head>
+
 <body>
 
-  <h1>Math Project</h1>
-  <p>Guo Haoying, Period 1</p>
+<!-- Top Nav -->
+<div class="w3-bar w3-black w3-top w3-padding">
+  <span class="w3-bar-item w3-large w3-hide-small">Functions in the Real World</span>
+  <a href="#top" class="w3-bar-item w3-button w3-right w3-hide-small">Home</a>
+  <a href="#absolute" class="w3-bar-item w3-button w3-right w3-hide-small">Absolute Value</a>
+  <a href="#secant" class="w3-bar-item w3-button w3-right w3-hide-small">Secant</a>
+  <a href="#sinusoidal" class="w3-bar-item w3-button w3-right w3-hide-small">Sinusoidal</a>
+  <a href="#cosecant" class="w3-bar-item w3-button w3-right w3-hide-small">Cosecant</a>
+</div>
 
-  <ul>
-    <li>Introduction</li>
-    <li>Body</li> 
-    <li>Conclusion</li>
-  </ul>
+<!-- Hero Section -->
+<header id="top" class="hero w3-display-container">
+  <div class="hero-overlay"></div>
+  <div class="hero-content w3-center">
+    <img src="img/sunway-lagoon-logo.png" alt="Sunway Lagoon Logo" class="hero-logo">
+    <h1 class="w3-xxlarge">Functions in the Real World</h1>
+    <h3 class="w3-opacity">Sunway Lagoon Edition</h3>
+    <p class="w3-large w3-margin-top">
+      Group Members: Guo Haoying, Feng Jinhan &nbsp; | &nbsp; Period 3
+    </p>
+    <p class="w3-margin-top">
+      Did you know that many everyday moments can be described by mathematical functions?
+      From computer science to economics, and from architectural engineering to biology,
+      functions translate abstract theory into workable solutions. Here, we explore the
+      functions in amusement parks with you.
+    </p>
+    <p class="w3-margin-top">
+      Our first stop is the familiar Sunway Lagoon—voted among Asia’s Best Attractions,
+      an award-winning park with 90+ rides. Let’s see how transformations turn real rides
+      into precise models!
+    </p>
+  </div>
+</header>
 
-  <a href="https://www.desmos.com/calculator/lntrvhmpib/" target="_blank">Photo</a>
+<!-- Quick Gallery Nav -->
+<section class="section-light section-padding w3-center">
+  <div class="content-card">
+    <h2 class="w3-xlarge">Function Gallery</h2>
+    <p class="w3-opacity">Explore how different families of functions model real-world rides.</p>
+    <div class="pill-nav w3-margin-top">
+      <a href="#reciprocal" class="w3-button w3-light-grey">1. Reciprocal</a>
+      <a href="#reciprocal2" class="w3-button w3-light-grey">2. 1/x²</a>
+      <a href="#polynomial" class="w3-button w3-light-grey">3. Polynomial</a>
+      <a href="#exponential" class="w3-button w3-light-grey">4. Exponential</a>
+      <a href="#logarithmic" class="w3-button w3-light-grey">5. Logarithmic</a>
+      <a href="#cosecant" class="w3-button w3-light-grey">6. Cosecant</a>
+      <a href="#sinusoidal" class="w3-button w3-light-grey">7. Sinusoidal</a>
+      <a href="#secant" class="w3-button w3-light-grey">8. Secant</a>
+      <a href="#absolute" class="w3-button w3-light-grey">9. Absolute Value</a>
+    </div>
+  </div>
+</section>
+
+<!-- 1. Reciprocal Function -->
+<section id="reciprocal" class="section-padding">
+  <div class="content-card w3-card w3-card-white w3-padding">
+    <div class="w3-center">
+      <img src="img/sunway-lagoon-logo.png" class="logo-small" alt="Sunway Lagoon">
+      <h2>1. Reciprocal Function – Pirate Ship</h2>
+      <p class="w3-opacity">Sunway Lagoon, Malaysia</p>
+      <img src="img/pirate-ship.jpg" alt="Pirate Ship Ride" class="ride-photo">
+    </div>
+
+    <h3>Parent Function</h3>
+    <p>\( f(x) = \dfrac{1}{x} \)</p>
+    <p>Below is an image of the ideal ride that best matches the parent function, which helps visualize why we chose this ride.</p>
+    <div class="w3-center">
+      <iframe src="https://www.desmos.com/calculator/kcntcx4jw2?embed"
+              class="desmos-frame" frameborder="0"></iframe>
+    </div>
+
+    <p class="w3-margin-top">
+      When we observe the ship near the bottom of its swing, the curved shape evokes the way that reciprocal
+      functions’ graph bends as they approach asymptotes.
+    </p>
+
+    <h3 class="w3-margin-top">Transformed Functions</h3>
+
+    <div class="two-column w3-margin-top">
+      <div>
+        <h4>First Function</h4>
+        <p>\( g(x) = -45.8\left(\dfrac{1}{x-10.9}\right) - 12,\quad 0.5 \le x \le 7.1 \)</p>
+        <ul>
+          <li>Reflection across the x-axis</li>
+          <li>Vertical stretch by a factor of 45.8</li>
+          <li>Horizontal translation 10.9 units to the right</li>
+          <li>Vertical translation 12 units downwards</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Second Function</h4>
+        <p>\( h(x) = -3.9\left(\dfrac{1}{1.8(x-8)}\right) - 2.3,\quad 7.1 \le x \le 7.65 \)</p>
+        <ul>
+          <li>Reflection across the x-axis</li>
+          <li>Vertical stretch by a factor of \(3.9/1.8\)</li>
+          <li>Horizontal translation 8 units to the right</li>
+          <li>Vertical translation 2.3 units downwards</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="w3-center w3-margin-top">
+      <iframe src="https://www.desmos.com/calculator/vcwitqpc5b?embed"
+              class="desmos-frame" frameborder="0"></iframe>
+    </div>
+
+    <h4 class="w3-margin-top">Explanation</h4>
+    <p>
+      First, to make the function show a growing trend, we applied a reflection, which could be done over
+      either the x or y axis. In our case, we chose the x-axis. As \(x\) approaches 0, the function begins
+      to change rapidly because \(x\) is in the denominator. So, we decided to apply a vertical stretch.
+      We found that it best fits the bottom of the pirate ship when the value of \(a\) is between 40 and 50,
+      ultimately settling on 45.8. Finally, we adjusted the asymptote to the pirate ship's position by adding
+      a horizontal translation of 10.9 units to the right and a vertical translation of 12 units downwards.
+    </p>
+    <p>
+      To capture the remaining portion, we add the second function. Similar to the first function, this one
+      also needs to be reflected first. Since the remaining part of the pirate ship is quite steep, no
+      significant changes were needed. We began with a vertical stretch, then aligned the curve with the
+      pirate ship by applying a horizontal translation of 8 units to the right and a vertical translation
+      of 2.3 units downwards. At this point, the top of the curve is positioned very close to the top of
+      the pirate ship, so we applied a horizontal compression by a factor of 1.8 and adjusted the vertical
+      stretch from 4 to 3.9 to make the function’s graph fit the entire ride.
+    </p>
+
+    <h4 class="w3-margin-top">Domain and Range</h4>
+    <p>
+      For the first function, it fits from the leftmost point of the pirate ship near \((0.5,-7.6)\) to
+      \((7.1,0.05)\), thus:
+    </p>
+    <ul>
+      <li>\(g(x)\) Domain: \([0.5, 7.1]\)</li>
+      <li>\(g(x)\) Range: \([-7.6, 0.05]\) (rounded)</li>
+    </ul>
+    <p>
+      The second function continues from \(x = 7.1\) to \(x = 7.65\), reaching approximately \((7.65,3.89)\).
+      Although the horizontal span is short, the curve is steep, producing a large vertical change; hence:
+    </p>
+    <ul>
+      <li>\(h(x)\) Domain: \([7.1, 7.65]\)</li>
+      <li>\(h(x)\) Range: \([0.11, 3.89]\) (rounded)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 2. Reciprocal of x^2 -->
+<section id="reciprocal2" class="section-light section-padding">
+  <div class="content-card w3-card w3-card-white w3-padding">
+    <div class="w3-center">
+      <img src="img/sunway-lagoon-logo.png" class="logo-small" alt="Sunway Lagoon">
+      <h2>2. Reciprocal of x Squared Function</h2>
+      <p class="w3-opacity">Halloween Entrance – Sunway Lagoon</p>
+      <img src="img/skull-cutlass.jpg" alt="Skull and Cutlasses" class="ride-photo">
+    </div>
+
+    <p>
+      The second type of function is the reciprocal of \(x^2\) function. With Halloween approaching,
+      the amusement park is filled with various seasonal decorations. This ride adopts a horror
+      theme—decorated with a skull and two pirate cutlasses. You will see it as soon as you walk
+      into the park. Come and try! Good luck!
+    </p>
+
+    <h3>Parent Function</h3>
+    <p>\( f(x) = \dfrac{1}{x^2} \)</p>
+    <p>Below is an image of the ideal ride that best matches the parent function, which helps visualize why we chose this ride.</p>
+
+    <div class="w3-center">
+      <iframe src="https://www.desmos.com/calculator/db6jciotrz?embed"
+              class="desmos-frame" frameborder="0"></iframe>
+    </div>
+
+    <p class="w3-margin-top">
+      Below the two pirate cutlasses, there are two excellent arcs that match the reciprocal of
+      \(x^2\) function perfectly. The pirate cutlass on the left is like a function growing from
+      the third to first quadrant, another one on the right, decreasing from the second to fourth quadrant.
+    </p>
+
+    <div class="w3-center">
+      <iframe src="https://www.desmos.com/calculator/xpqtxrchez?embed"
+              class="desmos-frame" frameborder="0"></iframe>
+    </div>
+
+    <h3 class="w3-margin-top">Transformed Functions</h3>
+
+    <div class="two-column w3-margin-top">
+      <div>
+        <h4>Right Cutlass</h4>
+        <p>
+          \( g(x) = 8.2\cdot \dfrac{1}{0.1(x+6.1)^2} - 3.7,\quad -2.4 \le x \le 5 \)
+        </p>
+        <ul>
+          <li>Vertically stretch by a factor of 8.2</li>
+          <li>Horizontally stretch by a factor of 10</li>
+          <li>Horizontally translate 6.1 units to the left</li>
+          <li>Vertically translate 3.7 units downwards</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Left Cutlass</h4>
+        <p>
+          \( j(x) = 8.2\cdot \dfrac{1}{0.1(x-6.6)^2} - 3.7,\quad -3.5 \le x \le 2.9 \)
+        </p>
+        <ul>
+          <li>Vertically stretch by a factor of 8.2</li>
+          <li>Horizontally stretch by a factor of 10</li>
+          <li>Horizontally translate 6.6 units to the right</li>
+          <li>Vertically translate 3.7 units downwards</li>
+        </ul>
+      </div>
+    </div>
+
+    <h4 class="w3-margin-top">Explanation</h4>
+    <p>
+      We took the right part of the parent function, as it is decreasing from the second to the fourth
+      quadrant. To make the parent function reach the pirate cutlass below, we made a vertical translation
+      3.7 units downwards. But the bottom left corner is too vertical; to make it smoother, we chose to
+      vertically stretch by a factor of 8.2. Now, the bottom left corner has become much flatter. However,
+      compared to the curve of the pirate cutlass, the upper part is still too vertical, so we decided to
+      horizontally stretch it by a factor of 10.
+    </p>
+    <p>
+      Another pirate cutlass is modeled similarly using the other branch of the parent function, with
+      horizontal translation adjusted to the right. In both cases, the transformations allow the curves
+      to closely match the decorative blades.
+    </p>
+
+    <h4 class="w3-margin-top">Domain and Range</h4>
+    <ul>
+      <li>\(g(x)\) Domain: \([-2.4, 5]\), Range: \([-3, 2.3]\) (rounded)</li>
+      <li>\(j(x)\) Domain: \([-3.5, 2.9]\), Range: \([-2.9, 2.3]\) (rounded)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 3. Polynomial Function -->
+<section id="polynomial" class="section-padding">
+  <div class="content-card w3-card w3-card-white w3-padding">
+    <div class="w3-center">
+      <img src="img/sunway-lagoon-logo.png" class="logo-small" alt="Sunway Lagoon">
+      <h2>3. Polynomial Function – Cubic Roller Coaster</h2>
+      <img src="img/sunway-coaster.jpg" alt="Cubic Coaster" class="ride-photo">
+    </div>
+
+    <p>
+      At Sunway Lagoon, this roller coaster is the most thrilling and exciting. Moreover, the track
+      on this section of the roller coaster perfectly coincides with a cubic function. We chose a cubic
+      function to fit this image, as this roller coaster track has a highest and lowest point, which
+      matches the characteristics of the cubic function.
+    </p>
+
+    <h3>Parent Function</h3>
+    <p>\( y = x(x-5.6)(x+8.6) \)</p>
+    <p>
+      Because the entire ride could not be fully photographed from the photographer’s angle, we estimated
+      the key points in order to determine the function. This function passes through the point \((0, 0)\).
+      We also speculated that it has x-intercepts at approximately \((5.6, 0)\) and \((-8.6, 0)\), which is
+      why we selected this curve as our parent function.
+    </p>
+
+    <div class="w3-center">
+      <iframe src="https://www.desmos.com/calculator/y74f1glekq?embed"
+              class="desmos-frame" frameborder="0"></iframe>
+    </div>
+
+    <p class="w3-margin-top">
+      We spotted this track while waiting in line for the roller coaster, which reminded us of the polynomial
+      function. The track had a highest and lowest point, perfectly matching our expectations for the polynomial
+      function, so we chose it.
+    </p>
+
+    <div class="w3-center">
+      <iframe src="https://www.desmos.com/calculator/3n4rhzvk5k?embed"
+              class="desmos-frame" frameborder="0"></iframe>
+    </div>
+
+    <h3 class="w3-margin-top">Transformed Function</h3>
+    <p>
+      \( y = 0.0121 \cdot x(x-5.6)(x+8.6) + 0.1,\quad -5 \le x \le 4.8 \)
+    </p>
+    <ul>
+      <li>Vertically compress by a factor of 0.0121</li>
+      <li>Vertically translate up 0.1 units</li>
+    </ul>
+
+    <h4 class="w3-margin-top">Explanation</h4>
+    <p>
+      As mentioned in the previous text, we speculated this function passes through the points
+      \((0,0)\), \((5.6,0)\) and \((-8.6,0)\), so we had our parent function. However, the portion
+      between \((-8.6,0)\) and \((0,0)\) is too steep as well as the part between \((0,0)\) and
+      \((5.6,0)\); as a result, we vertically compressed the function by a factor of 0.0121.
+      Then we found the function is too low compared to the image, so we vertically translate
+      the function 0.1 unit up.
+    </p>
+
+    <h4 class="w3-margin-top">Domain and Range</h4>
+    <p>
+      Because of the limitation of the image, we had to restrict the domain and range of this function.
+      The function decreases from the point \((-5, 2.4)\) to \((3.1, -1)\) (rounded), passing through
+      the point \((0, 0)\). Then, the function starts to increase from \((3.1, -1)\) to \((4.8, -0.52)\)
+      (rounded). So we have:
+    </p>
+    <ul>
+      <li>Domain: \([-5, 4.8]\)</li>
+      <li>Range: \([-1, 2.4]\) (rounded)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 4. Exponential Function -->
+<section id="exponential" class="section-light section-padding">
+  <div class="content-card w3-card w3-card-white w3-padding">
+    <div class="w3-center">
+      <img src="img/sunway-lagoon-logo.png" class="logo-small" alt="Sunway Lagoon">
+      <h2>4. Exponential Function – Gentle Water Slide</h2>
+      <img src="img/water-slide.jpg" alt="Water Slide" class="ride-photo">
+    </div>
+
+    <p>
+      Next, let’s move to Sunway Lagoon’s water park. The first ride is a water slide, representing the
+      exponential function. It is probably the most relaxing and gentle ride in the entire park.
+    </p>
+
+    <h3>Parent Function</h3>
+    <p>\( f(x) = 0.5^x \)</p>
+    <p>Below is an image of the ideal ride that best matches the parent function, which helps visualize why we chose this ride.</p>
+
+    <div class="w3-center">
+      <iframe src="https://www.desmos.com/calculator/abt659xmth?embed"
+              class="desmos-frame" frameborder="0"></iframe>
+    </div>
+
+    <p class="w3-margin-top">
+      This slide looks very similar to the lower part of a horizontally stretched exponential function,
+      and the ground acts as its asymptote.
+    </p>
+
+    <div class="w3-center">
+      <iframe src="https://www.desmos.com/calculator/xf6nhmclyz?embed"
+              class="desmos-frame" frameborder="0"></iframe>
+    </div>
+
+    <h3 class="w3-margin-top">Transformed Functions</h3>
+
+    <div class="two-column w3-margin-top">
+      <div>
+        <h4>First Function</h4>
+        <p>
+          \( f(x) = 4.1\left(\dfrac12\right)^{0.19(x+16)} - 3.6,\quad 5 \le x \le 10 \)
+        </p>
+        <ul>
+          <li>Vertical stretch by a factor of 4.1</li>
+          <li>Horizontal stretch by a factor of 5.26 (≈ \(1/0.19\))</li>
+          <li>Horizontal translation 16 units to the left</li>
+          <li>Vertical translation 3.6 units downwards</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Second Function</h4>
+        <p>
+          \( g(x) = 4.1\left(\dfrac12\right)^{0.19(x+8.8)} - 4,\quad -10 \le x \le 5 \)
+        </p>
+        <ul>
+          <li>Vertical stretch by a factor of 4.1</li>
+          <li>Horizontal stretch by a factor of 5.26</li>
+          <li>Horizontal translation 8.8 units to the left</li>
+          <li>Vertical translation 4 units downwards</li>
+        </ul>
+      </div>
+    </div>
+
+    <h4 class="w3-margin-top">Explanation</h4>
+    <p>
+      This slide goes from left to right, which means it shows a decreasing trend. We chose a base between
+      0 and 1 for our exponential function. However, because the graph of the function increases too rapidly
+      as it approaches negative infinity, while the slope of the slide is much gentler, we added an additional
+      function to fully match the ride.
+    </p>
+    <p>
+      We first moved the function downward by 3.5 units to bring its asymptote closer to the ground. Then,
+      because it changed too rapidly when approaching negative infinity, we shifted it 8 units to the left,
+      at which point the graph intersected the slide. The left half of the graph had a very large curvature,
+      so we applied a horizontal stretch by a factor of 5 (≈ \(1/0.2\)) to make it flatter.
+    </p>
+    <p>
+      Since the graph was below the slide, we applied a vertical stretch by a factor of 4. At this point,
+      the graph was almost aligned with the ride, but it was still slightly above it, so we moved it
+      downward by another 0.5 units (a total translation of 4 units). We then made some slight adjustment
+      by changing the horizontal stretch from 5 to 5.26 and the vertical stretch from 4 to 4.1. At this
+      point, the graph aligned perfectly with the ride except for a small portion on the far right.
+      Because this section of the slide is almost a straight line, we modified the position of the asymptote
+      of the same function to the upper left to create a new function. Finally, the two functions together
+      covered the entire ride.
+    </p>
+
+    <h4 class="w3-margin-top">Domain and Range</h4>
+    <p>
+      Because the slide is very gentle, the ranges of the two functions do not vary significantly. The range
+      of the left function is between –3.33 and 0.8. Since the part on the right lies very close to the ground
+      and is almost a straight line, its range is even smaller, from –3.46 to –3.34. The domains of the two
+      functions connect with no gap, covering the entire slide from –10 to 10.
+    </p>
+  </div>
+</section>
+
+<!-- 5. Logarithmic Function -->
+<section id="logarithmic" class="section-padding">
+  <div class="content-card w3-card w3-card-white w3-padding">
+    <div class="w3-center">
+      <img src="img/sunway-lagoon-logo.png" class="logo-small" alt="Sunway Lagoon">
+      <h2>5. Logarithmic Function – Freefall Tube Slide</h2>
+      <img src="img/freefall-tube.jpg" alt="Freefall Tube Slide" class="ride-photo">
+    </div>
+
+    <p>
+      Next is the logarithmic function, modeled after the Freefall Tube Slide from Sunway Lagoon.
+      In contrast to the last ride, this one is an extreme drop slide with a slope that is almost
+      90 degrees. The two rides form a strong contrast, just like exponential and logarithmic
+      functions, which are inverse to each other.
+    </p>
+
+    <h3>Parent Function</h3>
+    <p>\( f(x) = \log_{0.5}(x) \)</p>
+    <p>Below is an image of the ideal ride that best matches the parent function, which helps visualize why we chose this ride.</p>
+
+    <div class="w3-center">
+      <iframe src="https://www.desmos.com/calculator/vbnrapnauo?embed"
+              class="desmos-frame" frameborder="0"></iframe>
+    </div>
+
+    <div class="w3-center w3-margin-top">
+      <iframe src="https://www.desmos.com/calculator/3kwaekrfpk?embed"
+              class="desmos-frame" frameborder="0"></iframe>
+    </div>
+
+    <h3 class="w3-margin-top">Transformed Function</h3>
+    <p>
+      \( g(x) = 8\log_{0.5}\big(2.8(x+1)\big) + 30,\quad 1.3 \le x \le 6.4 \)
+    </p>
+    <ul>
+      <li>Vertical stretch by a factor of 8</li>
+      <li>Horizontal compression by a factor of 0.357 (≈ \(1/2.8\))</li>
+      <li>Horizontal translation 1 unit to the left</li>
+      <li>Vertical translation 30 units upwards</li>
+    </ul>
+
+    <h4 class="w3-margin-top">Explanation</h4>
+    <p>
+      Unlike the last function, this ride is much steeper than the parent logarithmic function.
+      So we first applied a vertical stretch by a factor of 4 to make the curve match the shape
+      of the slide. After applying the vertical and horizontal translations, we noticed a similar
+      issue as before: only the middle part aligned with the ride because the curvature did not
+      match the slide.
+    </p>
+    <p>
+      To increase the steepness, we strengthened the vertical stretch to a factor of 8. Even then,
+      the angle was still not steep enough, so we tried a horizontal compression by a factor of 1/3.
+      After observing the graph, we found that the part where the curvature increases rapidly closely
+      matched the downward slope of the slide. We then moved the curved part upward by 30 units.
+      At this point, the graph was very close, but it was slightly too far to the right, so we shifted
+      it 1 unit to the left.
+    </p>
+    <p>
+      Then, we realized that the horizontal compression of 1/3 was a bit too strong, so we adjusted
+      it to 1/2.8 (changing from approximately 0.33 to about 0.357). Finally, the graph fits almost
+      the entire slide perfectly.
+    </p>
+
+    <h4 class="w3-margin-top">Domain and Range</h4>
+    <p>
+      This time, because the Freefall Tube Slide is extremely steep, its domain is relatively small,
+      ranging from 1.3 to 6.4. However, its range is much larger, from approximately –5 to 8.5.
+    </p>
+    <ul>
+      <li>Domain: \([1.3, 6.4]\)</li>
+      <li>Range: \([-5, 8.5]\) (rounded)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 6. Cosecant Function -->
+<section id="cosecant" class="section-dark section-padding">
+  <div class="content-card w3-card w3-padding w3-black">
+    <div class="w3-center">
+      <img src="img/sixflags-ga-logo.png" class="logo-small" alt="Six Flags Great Adventure">
+      <h2>6. Cosecant Function – Tall Launch Coaster</h2>
+      <p class="w3-opacity">Six Flags Great Adventure, New Jersey, USA</p>
+      <img src="img/kingda-ka.jpg" alt="Launch Coaster" class="ride-photo">
+    </div>
+
+    <p>
+      This is a hydraulically launched steel roller coaster at Six Flags Great Adventure in
+      New Jersey, United States. It was known as the tallest and fastest roller coaster in
+      the world when it opened in 2005.
+    </p>
+
+    <h3>Parent Function</h3>
+    <p>\( f(x) = \csc x \)</p>
+    <p>Below is an image of the ideal ride that best matches the parent function, which helps visualize why we chose this ride.</p>
+
+    <div class="w3-center">
+      <iframe src="https://www.desmos.com/calculator/fdzasmekac?embed"
+              class="desmos-frame" frameborder="0"></iframe>
+    </div>
+
+    <div class="w3-center w3-margin-top">
+      <iframe src="https://www.desmos.com/calculator/qr0exvnwqs?embed"
+              class="desmos-frame" frameborder="0"></iframe>
+    </div>
+
+    <h3 class="w3-margin-top">Transformed Function</h3>
+    <p>
+      \( f(x) = 1.9\,\csc\big(0.52(x-2.9)\big) + 11,\quad -2.96 \le x \le 2.72 \)
+    </p>
+    <ul>
+      <li>Vertical stretch by a factor of 1.9</li>
+      <li>Horizontal stretch by a factor of \(25/13\)</li>
+      <li>Horizontal translation 2.9 units to the right</li>
+      <li>Vertical translation 11 units upwards</li>
+    </ul>
+
+    <h4 class="w3-margin-top">Explanation</h4>
+    <p>
+      We observed that the bottom part, which is below the x-axis, has a curve at the top.
+      In contrast, the upper part of the function has a curve at the bottom. In this case,
+      we chose to use the bottom part which is below the x-axis. First, we raised it up
+      because it was under the x-axis. Then, we noticed that the curve at the top was too narrow,
+      so we applied a horizontal stretch by a factor of \(25/13\). However, the function still
+      deviated from the image, so we slightly moved the function 2.9 units to the right.
+      Finally, the curves at the top left and top right corners were too blunt, and the function
+      was a bit too high, so we made an improvement: vertically stretch by a factor of 1.9.
+    </p>
+
+    <h4 class="w3-margin-top">Domain and Range</h4>
+    <p>
+      As the length of this roller coaster was limited by the “photographer”, we have to restrict
+      its domain and range. The domain of this part starts from –2.96 to 2.72. The range of this
+      portion is quite interesting: it starts growing from –9.2, then reaches its peak at 9.1,
+      finally decreases to –9.3. The lowest point is –9.3, so we use:
+    </p>
+    <ul>
+      <li>Domain: \([-2.96, 2.72]\)</li>
+      <li>Range: \([-9.3, 9.1]\) (rounded)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 7. Sinusoidal Function -->
+<section id="sinusoidal" class="section-light section-padding">
+  <div class="content-card w3-card w3-card-white w3-padding">
+    <div class="w3-center">
+      <img src="img/sixflags-texas-logo.png" class="logo-small" alt="Six Flags Over Texas">
+      <h2>7. Sinusoidal Function – The Joker</h2>
+      <p class="w3-opacity">Six Flags Over Texas, Arlington, USA</p>
+      <img src="img/joker-coaster.jpg" alt="The Joker Coaster" class="ride-photo">
+    </div>
+
+    <p>
+      The second trigonometric function is a sine function, modeled after The Joker from
+      Six Flags Over Texas in Arlington, United States, one of the silliest-looking rollercoasters
+      you may ever see, but the screams you’ll hear coming from this ride are no joke!
+    </p>
+    <p>
+      The upper contour shows a clear repeating crest–trough pattern that can be well modeled
+      by a sinusoidal function. Here we use sine as an example.
+    </p>
+
+    <h3>Parent Function</h3>
+    <p>\( f(x) = \sin x \)</p>
+
+    <div class="w3-center">
+      <iframe src="https://www.desmos.com/calculator/6oawzf4t3j?embed"
+              class="desmos-frame" frameborder="0"></iframe>
+    </div>
+
+    <div class="w3-center w3-margin-top">
+      <iframe src="https://www.desmos.com/calculator/sbdcvrsi7p?embed"
+              class="desmos-frame" frameborder="0"></iframe>
+    </div>
+
+    <h3 class="w3-margin-top">Transformed Functions</h3>
+
+    <p>\( g(x) = \sin\big(0.75(x-1.5)\big) + 3.6,\quad -8 \le x \le -3 \)</p>
+    <ul>
+      <li>Horizontal stretch by a factor of \(4/3\)</li>
+      <li>Horizontal translation 1.5 units to the right</li>
+      <li>Vertical translation 3.6 units upwards</li>
+      <li>Domain: \([-8, -3]\), Range: \([2.85, 4.6]\) (rounded)</li>
+    </ul>
+
+    <p>\( g(x) = \sin\big(0.6(x-2.15)\big) + 3.9,\quad -3 \le x \le 2 \)</p>
+    <ul>
+      <li>Horizontal stretch by a factor of \(5/3\)</li>
+      <li>Horizontal translation 2.15 units to the right</li>
+      <li>Vertical translation 3.9 units upwards</li>
+      <li>Domain: \([-3, 2]\), Range: \([2.90, 3.85]\) (rounded)</li>
+    </ul>
+
+    <p>\( g(x) = \sin\big(0.8(x-1.85)\big) + 3.67,\quad 2 \le x \le 5 \)</p>
+    <ul>
+      <li>Horizontal stretch by a factor of 1.25 (\(1/0.8\))</li>
+      <li>Horizontal translation 1.85 units to the right</li>
+      <li>Vertical translation 3.67 units upwards</li>
+      <li>Domain: \([2, 5]\), Range: \([3.79, 4.67]\) (rounded)</li>
+    </ul>
+
+    <p>\( g(x) = 0.95\sin\big(0.6(x-0.2)\big) + 4,\quad 5 \le x \le 10 \)</p>
+    <ul>
+      <li>Vertical compression by a factor of 0.95</li>
+      <li>Horizontal stretch by a factor of \(5/3\)</li>
+      <li>Horizontal translation 0.2 units to the right</li>
+      <li>Vertical translation 4 units upwards</li>
+      <li>Domain: \([5, 10]\), Range: \([3.05, 4.25]\)</li>
+    </ul>
+
+    <h4 class="w3-margin-top">Explanation</h4>
+    <p>
+      Interestingly, the four functions use almost the same transformations: the amplitude \(A\)
+      remains nearly unchanged (approximately 1). As the periods of these functions are slightly
+      longer than the parent function, we stretched them horizontally by factors of roughly 0.78
+      on average to fit the image. The phase shifts \(d\) and vertical translations \(c\) vary only
+      to adjust local alignment.
+    </p>
+    <p>
+      The four domain intervals are contiguous and meet exactly at the endpoints:
+      \([-8,-3]\), \([-3,2]\), \([2,5]\), \([5,10]\), together covering \([-8,10]\) with no gaps.
+      Because the amplitude is almost the same across the functions, the range is nearly identical
+      as well, lying approximately between 2.93 and 4.7 (rounded).
+    </p>
+  </div>
+</section>
+
+<!-- 8. Secant Function -->
+<section id="secant" class="section-padding">
+  <div class="content-card w3-card w3-card-white w3-padding">
+    <div class="w3-center">
+      <img src="img/chimelong-logo.png" class="logo-small" alt="Chimelong Paradise">
+      <h2>8. Secant Function – U-Shape Skateboard Ride</h2>
+      <p class="w3-opacity">Chimelong Paradise, Guangzhou, China</p>
+      <img src="img/chimelong-u-shape.jpg" alt="Chimelong U-Shape Ride" class="ride-photo">
+    </div>
+
+    <p>
+      The last trigonometric function is the secant function, modeled after the U-shape skateboard
+      ride from Chimelong Paradise in Guangzhou, China. The inside of this ride forms a big bowl
+      that matches the upper part of the secant function.
+    </p>
+
+    <h3>Parent Function</h3>
+    <p>\( m(x) = \sec x \)</p>
+    <p>Below is an image of the ideal ride that best matches the parent function, which helps visualize why we chose this ride.</p>
+
+    <div class="w3-center">
+      <iframe src="https://www.desmos.com/calculator/7ncwhwuoas?embed"
+              class="desmos-frame" frameborder="0"></iframe>
+    </div>
+
+    <div class="w3-center w3-margin-top">
+      <iframe src="https://www.desmos.com/calculator/xkpnbnwnal?embed"
+              class="desmos-frame" frameborder="0"></iframe>
+    </div>
+
+    <h3 class="w3-margin-top">Transformed Function</h3>
+    <p>
+      \( m(x) = 4\sec\big(0.15(x+0.2)\big) - 7.38,\quad -7.7 \le x \le 7.3 \)
+    </p>
+    <ul>
+      <li>Vertical stretch by a factor of 4</li>
+      <li>Horizontal stretch by a factor of \(20/3\)</li>
+      <li>Horizontal translation 0.2 units to the left</li>
+      <li>Vertical translation 7.38 units downwards</li>
+    </ul>
+
+    <h4 class="w3-margin-top">Explanation</h4>
+    <p>
+      The first step that we took is stretching horizontally to align the bottom of the function graph
+      with the opening of the amusement park ride. However, the bottom of the function is still flat,
+      so we stretched the function vertically by a factor of 4. After this, we got a good curve on the
+      graph, but we needed to drag it down since it was still above the ride. We translated it down
+      7.38 units. Finally, to make the curve fit the image even better, we translated it 0.2 units to the left.
+    </p>
+
+    <h4 class="w3-margin-top">Domain and Range</h4>
+    <p>
+      Although this graph shows the whole ride, we still need to limit its domain and range. The function
+      starts decreasing from \((-7.7, 1.9)\) (rounded), reaches its lowest point at \((0,-3.38)\) (rounded),
+      and then increases to \((7.3,1.9)\) (rounded). So we have:
+    </p>
+    <ul>
+      <li>Domain: \([-7.7, 7.3]\)</li>
+      <li>Range: \([-3.4, 1.9]\) (rounded)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 9. Absolute Value Functions -->
+<section id="absolute" class="section-light section-padding">
+  <div class="content-card w3-card w3-card-white w3-padding">
+    <div class="w3-center">
+      <img src="img/la-grande-roue-logo.png" class="logo-small" alt="La Grande Roue de Montréal">
+      <h2>9. Absolute Value Functions – La Grande Roue de Montréal</h2>
+      <img src="img/montreal-wheel.jpg" alt="La Grande Roue de Montréal" class="ride-photo">
+    </div>
+
+    <p>
+      This is La Grande Roue de Montréal, an iconic attraction open 365 days a year. Canada's tallest
+      observation wheel, standing at 60 meters tall, offers 18-minute rotations, providing you with
+      breathtaking 360-degree views of Montreal.
+    </p>
+
+    <div class="w3-center">
+      <iframe src="https://www.desmos.com/calculator/8t0kknbbau?embed"
+              class="desmos-frame" frameborder="0"></iframe>
+    </div>
+
+    <p class="w3-margin-top">
+      We chose the Ferris wheel as our model because its spokes are very straight, extending from the
+      center outwards, making it the perfect choice for an absolute value function model.
+    </p>
+
+    <h3>Parent Function</h3>
+    <p>\( y = |x| \)</p>
+
+    <h3 class="w3-margin-top">Transformed Functions</h3>
+
+    <p>\( y = 3|x|,\quad -0.9 \le x \le 0.9 \)</p>
+    <ul>
+      <li>Vertical stretch by a factor of 3</li>
+      <li>Domain: \([-0.9, 0.9]\), Range: \([0, 2.7]\)</li>
+    </ul>
+
+    <p>\( y = 1.35|x|,\quad -1.8 \le x \le 1.8 \)</p>
+    <ul>
+      <li>Vertical stretch by a factor of 1.35</li>
+      <li>Domain: \([-1.8, 1.8]\), Range: \([0, 2.43]\)</li>
+    </ul>
+
+    <p>\( y = 0.72|x|,\quad -2.5 \le x \le 2.5 \)</p>
+    <ul>
+      <li>Vertical compression by a factor of 0.72</li>
+      <li>Domain: \([-2.5, 2.5]\), Range: \([0, 1.8]\)</li>
+    </ul>
+
+    <p>\( y = 0.355|x|,\quad -3 \le x \le 3 \)</p>
+    <ul>
+      <li>Vertical compression by a factor of 0.355</li>
+      <li>Domain: \([-3, 3]\), Range: \([0, 1.065]\)</li>
+    </ul>
+
+    <p>\( y = 0.07|x|,\quad -3.2 \le x \le 3.2 \)</p>
+    <ul>
+      <li>Vertical compression by a factor of 0.07</li>
+      <li>Domain: \([-3.2, 3.2]\), Range: \([0, 0.224]\)</li>
+    </ul>
+
+    <p>\( y = -0.223|x|,\quad -3.2 \le x \le 3.2 \)</p>
+    <ul>
+      <li>Reflection on the x-axis</li>
+      <li>Vertical compression by a factor of 0.223</li>
+      <li>Domain: \([-3.2, 3.2]\), Range: \([-0.7136, 0]\)</li>
+    </ul>
+
+    <p>\( y = -0.55|x|,\quad -2.8 \le x \le 2.8 \)</p>
+    <ul>
+      <li>Reflection on the x-axis</li>
+      <li>Vertical compression by a factor of 0.55</li>
+      <li>Domain: \([-2.8, 2.8]\), Range: \([-1.54, 0]\)</li>
+    </ul>
+
+    <p>\( y = -1.1|x|,\quad -2.15 \le x \le 2.15 \)</p>
+    <ul>
+      <li>Reflection on the x-axis</li>
+      <li>Vertical stretch by a factor of 1.1</li>
+      <li>Domain: \([-2.15, 2.15]\), Range: \([-2.365, 0]\)</li>
+    </ul>
+
+    <p>\( y = -2|x|,\quad -1.5 \le x \le 1.5 \)</p>
+    <ul>
+      <li>Reflection on the x-axis</li>
+      <li>Vertical stretch by a factor of 2</li>
+      <li>Domain: \([-1.5, 1.5]\), Range: \([-3, 0]\)</li>
+    </ul>
+
+    <p>\( y = -6.5|x|,\quad -0.52 \le x \le 0.52 \)</p>
+    <ul>
+      <li>Reflection on the x-axis</li>
+      <li>Vertical stretch by a factor of 6.5</li>
+      <li>Domain: \([-0.52, 0.52]\), Range: \([-3.38, 0]\)</li>
+    </ul>
+
+    <h4 class="w3-margin-top">Explanation</h4>
+    <p>
+      Absolute value functions are quite straightforward to explain. If they lie above the x-axis,
+      then they don't need to be reflected about the x-axis. Conversely, if they lie below the x-axis,
+      then they do, and we add a negative sign in front of the function. All we need to do is vertically
+      stretch, compress, or reflect it on the x-axis.
+    </p>
+    <p>
+      We are describing the function in terms of the spokes of a Ferris wheel, so we need to restrict
+      the range and domain from the central axle to the cabins. We consider the central axis of the
+      Ferris wheel as the origin of the function and the cabin as the endpoint to restrict the range
+      and domain, which gives us the domain and range for each function.
+    </p>
+  </div>
+</section>
+
+<!-- Conclusion -->
+<section class="section-padding">
+  <div class="content-card w3-card w3-card-white w3-padding w3-center">
+    <h2>Conclusion</h2>
+    <p>
+      We hope that through this website, you have gained a clearer understanding of how functions
+      appear in our everyday lives. Mathematics is not limited to amusement parks. There are countless
+      other examples waiting for you to discover!
+    </p>
+    <h3 class="w3-margin-top">Statement</h3>
+    <p>
+      All content and drawings on this website were created by human thinking and work.
+      AI was only used to build the website and to correct grammar and spelling.
+    </p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-24">
+  <p>Functions in the Real World – Sunway Lagoon Edition</p>
+  <p>Created for MHF4U CCT</p>
+</footer>
 
 </body>
 </html>
-
